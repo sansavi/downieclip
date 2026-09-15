@@ -24,3 +24,14 @@ targets:
         CODE_SIGN_IDENTITY: "-"
         ENABLE_HARDENED_RUNTIME: NO
         LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks"
+schemes:
+  # Współdzielona scheme — inaczej `xcodebuild -scheme DownieClip` działa tylko na Macu,
+  # na którym Xcode choć raz otworzył projekt (scheme ląduje wtedy w xcuserdata).
+  DownieClip:
+    build:
+      targets:
+        DownieClip: all
+    run:
+      config: Release
+    archive:
+      config: Release
