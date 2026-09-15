@@ -1,0 +1,26 @@
+name: DownieClip
+options:
+  bundleIdPrefix: com.github.sansavi
+  deploymentTarget:
+    macOS: "12.0"
+  createIntermediateGroups: true
+targets:
+  DownieClip:
+    type: application
+    platform: macOS
+    sources:
+      - Sources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.github.sansavi.downieclip
+        PRODUCT_NAME: DownieClip
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: Resources/Info.plist
+        SWIFT_VERSION: "5.0"                 # avoids Swift 6 strict concurrency errors
+        MACOSX_DEPLOYMENT_TARGET: "12.0"     # Xcode wpisuje to do LSMinimumSystemVersion w bundlu
+        ARCHS: "arm64 x86_64"                # universal binary — działa też na Macach Intel
+        ONLY_ACTIVE_ARCH: NO
+        CODE_SIGN_STYLE: Manual              # ad-hoc signing — no developer account needed
+        CODE_SIGN_IDENTITY: "-"
+        ENABLE_HARDENED_RUNTIME: NO
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks"

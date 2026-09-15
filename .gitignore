@@ -1,0 +1,12 @@
+# artefakty budowania
+build/
+dist/
+
+# Xcode: dane użytkownika (sam .xcodeproj jest w repo, żeby drugi Mac nie potrzebował xcodegen)
+**/xcuserdata/
+*.xcuserstate
+*.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+
+# macOS
+.DS_Store
+._*

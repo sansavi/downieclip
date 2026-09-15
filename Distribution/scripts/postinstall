@@ -1,0 +1,19 @@
+#!/bin/bash
+# Skrypt po instalacji .pkg (uruchamiany jako root przez Installer).
+# Czyści kwarantannę (apka jest podpisana ad-hoc, bez Developer ID) i startuje
+# agenta w sesji użytkownika, który jest zalogowany przy konsoli.
+set -uo pipefail
+
+APP="/Applications/DownieClip.app"
+
+/usr/bin/xattr -dr com.apple.quarantine "$APP" 2>/dev/null || true
+
+CONSOLE_USER="$(/usr/bin/stat -f %Su /dev/console)"
+if [ -n "$CONSOLE_USER" ] && [ "$CONSOLE_USER" != "root" ]; then
+    USER_ID="$(/usr/bin/id -u "$CONSOLE_USER" 2>/dev/null || echo "")"
+    if [ -n "$USER_ID" ]; then
+        /bin/launchctl asuser "$USER_ID" /usr/bin/open -a "$APP" 2>/dev/null || true
+    fi
+fi
+
+exit 0
