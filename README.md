@@ -87,8 +87,8 @@ Gotowe paczki nie muszą być budowane na obu Macach — wystarczy wystawić rel
 z załączonym `.pkg`, a drugi Mac pobiera z niego plik:
 
 ```bash
-gh release create v1.0 --title "v1.0" dist/DownieClip-1.0.pkg dist/DownieClip-1.0.zip
-gh release download v1.0 --pattern '*.pkg' --dir ~/Downloads
+gh release create v1.1 --title "v1.1" dist/DownieClip-1.1.pkg dist/DownieClip-1.1.zip
+gh release download v1.1 --pattern '*.pkg' --dir ~/Downloads
 ```
 
 ### Gdy drugi Mac używa innego konta GitHub
@@ -97,7 +97,7 @@ Repo jest **publiczne**, więc klonowanie i pobieranie paczek nie wymaga żadneg
 
 ```bash
 git clone https://github.com/sansavi/downieclip.git ~/GIT/downieclip
-curl -L -O https://github.com/sansavi/downieclip/releases/download/v1.0/DownieClip-1.0.pkg
+curl -L -O https://github.com/sansavi/downieclip/releases/download/v1.1/DownieClip-1.1.pkg
 ```
 
 Token z konta `sansavi` potrzebny jest tylko wtedy, gdy chcesz z tego Maca **pushować**

@@ -1,4 +1,4 @@
-DownieClip 1.0 — paczka instalacyjna
+DownieClip 1.1 — paczka instalacyjna
 ====================================
 
 Co to jest
@@ -13,7 +13,7 @@ Wymagania na tym drugim Macu
     - Bez Downie 4 apka uruchomi się, ale przy próbie wysłania pokaże ✗ i napisze o tym w logu.
 
 Instalacja — wariant A: plik .pkg (zalecany)
-    1. Skopiuj DownieClip-1.0.pkg na drugi Mac (AirDrop / USB / iCloud).
+    1. Skopiuj DownieClip-1.1.pkg na drugi Mac (AirDrop / USB / iCloud).
     2. Kliknij dwukrotnie.
        - Jeśli macOS napisze „nie można otworzyć, bo pochodzi od niezidentyfikowanego
          dewelopera”: kliknij plik prawym przyciskiem → Otwórz → Otwórz.
@@ -22,10 +22,10 @@ Instalacja — wariant A: plik .pkg (zalecany)
          podpisana ad-hoc), stąd ten jednorazowy komunikat.
     3. Podaj hasło administratora. Apka trafi do /Applications, kwarantanna zostanie
        zdjęta, a agent wystartuje od razu.
-    Z terminala (bez okienek): sudo installer -pkg DownieClip-1.0.pkg -target /
+    Z terminala (bez okienek): sudo installer -pkg DownieClip-1.1.pkg -target /
 
 Instalacja — wariant B: ZIP
-    1. Rozpakuj DownieClip-1.0.zip.
+    1. Rozpakuj DownieClip-1.1.zip.
     2. Kliknij dwukrotnie instalacja.command (jeśli macOS zablokuje: prawy → Otwórz).
        Skopiuje apkę do /Applications, zdejmie kwarantannę i uruchomi ją.
     Alternatywnie ręcznie: przeciągnij DownieClip.app do /Applications, a potem w Terminalu:

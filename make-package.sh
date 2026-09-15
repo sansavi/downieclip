@@ -9,7 +9,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 
-VERSION="1.0"
+VERSION="1.1"
 STAGE="dist/stage"
 ZIPDIR="dist/DownieClip-$VERSION"
 

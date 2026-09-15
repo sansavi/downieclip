@@ -83,7 +83,10 @@ fi
 
 # Tożsamość commitów tylko lokalnie — na służbowym Macu globalna bywa ustawiona na konto firmowe.
 if [ -z "$(git -C "$TARGET" config user.email || true)" ]; then
-    default_mail="9073796+$OWNER@users.noreply.github.com"
+    # e-mail wyliczamy z GitHuba zamiast wpisywać na sztywno (numeryczne id konta jest
+    # publiczne, ale nie ma powodu trzymać go w repo)
+    default_mail="$(gh api "users/$OWNER" --jq '"\(.id)+\(.login)@users.noreply.github.com"' 2>/dev/null || true)"
+    [ -n "$default_mail" ] || default_mail="$OWNER@users.noreply.github.com"
     read -r -p "E-mail do commitów w tym repo [$default_mail]: " MAIL
     MAIL="${MAIL:-$default_mail}"
     git -C "$TARGET" config user.name "$OWNER"
