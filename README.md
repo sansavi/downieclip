@@ -90,3 +90,24 @@ z załączonym `.pkg`, a drugi Mac pobiera z niego plik:
 gh release create v1.0 --title "v1.0" dist/DownieClip-1.0.pkg dist/DownieClip-1.0.zip
 gh release download v1.0 --pattern '*.pkg' --dir ~/Downloads
 ```
+
+### Gdy drugi Mac używa innego konta GitHub
+
+Repo jest prywatne i należy do konta `sansavi`. Jeśli na drugim Macu logujesz się innym
+kontem (np. firmowym/enterprise, `login_firma`), to konto **nie dostanie dostępu** —
+konta enterprise mogą współpracować tylko w obrębie swojego enterprise. Rozwiązanie:
+autoryzacja tokenem z konta `sansavi`, zapisanym w Keychainie tego Maca.
+
+```bash
+# 1. Utwórz fine-grained token na koncie sansavi (przeglądarka):
+#    https://github.com/settings/personal-access-tokens/new
+#    Repository access: Only select repositories → downieclip
+#    Permissions → Contents: Read and write
+# 2. Na drugim Macu:
+git clone https://github.com/sansavi/downieclip.git ~/GIT/downieclip
+cd ~/GIT/downieclip && bash scripts/setup-drugi-mac.sh   # pyta o token, zapisuje w Keychainie, testuje dostęp
+```
+
+Token jest wpisywany tylko w oknie promptu skryptu (`read -s`) i ląduje wyłącznie
+w Keychainie — nigdy w pliku repo, w historii shella ani w argumentach polecenia.
+Po wygaśnięciu tokenu wystarczy powtórzyć skrypt.
