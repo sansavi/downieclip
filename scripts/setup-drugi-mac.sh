@@ -1,8 +1,9 @@
 #!/bin/bash
-# Konfiguracja dostępu do prywatnego repo sansavi/downieclip na TYM Macu.
+# Dostęp do repo sansavi/downieclip na TYM Macu.
 #
-# Dla sytuacji, gdy na tym Macu pracujesz na innym koncie GitHub (np. firmowym/enterprise).
-# Repo należy do konta sansavi, więc autoryzacja idzie tokenem z tego konta.
+# Repo jest publiczne: klon i pull działają bez tokenu. Ten skrypt przydaje się, gdy chcesz
+# z tego Maca PUSHOWAĆ, a logujesz się tu innym kontem GitHub (np. firmowym/enterprise) —
+# wtedy autoryzacja idzie tokenem z konta sansavi.
 #
 # Uwaga (sprawdzone na macOS 27): `git credential-osxkeychain store` NIE działa
 # ("failed to store: -1"), dlatego zamiast klasycznego wpisu w Keychainie używamy
@@ -15,7 +16,7 @@ REPO="downieclip"
 TARGET="${TARGET:-$HOME/GIT/$REPO}"
 KEYCHAIN_ITEM="downieclip-pat"
 
-echo "== Dostęp do prywatnego repo $OWNER/$REPO =="
+echo "== Dostęp do $OWNER/$REPO (klon jest publiczny; token tylko do push) =="
 echo
 
 have_gh=0

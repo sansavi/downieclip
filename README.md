@@ -93,21 +93,25 @@ gh release download v1.0 --pattern '*.pkg' --dir ~/Downloads
 
 ### Gdy drugi Mac używa innego konta GitHub
 
-Repo jest prywatne i należy do konta `sansavi`. Jeśli na drugim Macu logujesz się innym
-kontem (np. firmowym/enterprise, `login_firma`), to konto **nie dostanie dostępu** —
-konta enterprise mogą współpracować tylko w obrębie swojego enterprise. Rozwiązanie:
-autoryzacja tokenem z konta `sansavi`, zapisanym w Keychainie tego Maca.
+Repo jest **publiczne**, więc klonowanie i pobieranie paczek nie wymaga żadnego logowania:
 
 ```bash
-# 1. Utwórz fine-grained token na koncie sansavi (przeglądarka):
+git clone https://github.com/sansavi/downieclip.git ~/GIT/downieclip
+curl -L -O https://github.com/sansavi/downieclip/releases/download/v1.0/DownieClip-1.0.pkg
+```
+
+Token z konta `sansavi` potrzebny jest tylko wtedy, gdy chcesz z tego Maca **pushować**
+(konto firmowe/enterprise nie ma tu prawa zapisu — konta enterprise nie mogą współpracować
+z repo poza swoim enterprise). Wtedy:
+
+```bash
+# 1. Fine-grained token na koncie sansavi:
 #    https://github.com/settings/personal-access-tokens/new
 #    Repository access: Only select repositories → downieclip
 #    Permissions → Contents: Read and write
-# 2. Na drugim Macu:
-git clone https://github.com/sansavi/downieclip.git ~/GIT/downieclip
-cd ~/GIT/downieclip && bash scripts/setup-drugi-mac.sh   # pyta o token, zapisuje w Keychainie, testuje dostęp
+# 2. W repo:
+bash scripts/setup-drugi-mac.sh     # pyta o token (read -s), ustawia repo-lokalny helper, testuje dostęp
 ```
 
-Token jest wpisywany tylko w oknie promptu skryptu (`read -s`) i ląduje wyłącznie
-w Keychainie — nigdy w pliku repo, w historii shella ani w argumentach polecenia.
-Po wygaśnięciu tokenu wystarczy powtórzyć skrypt.
+Token ląduje w Keychainie lub w gh — nigdy w pliku repo, w historii shella ani w URL-u repo.
+Alternatywa bez tokenu: zrób fork pod swoim kontem i wysyłaj zmiany pull requestem.
